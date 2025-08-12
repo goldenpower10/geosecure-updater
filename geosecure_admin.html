@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoSecure Admin Panel</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        font-size: 20px;
+    }
+    .container {
+        margin-top: 30px;
+    }
+    input, button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 5px;
+    }
+    button {
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<header>GeoSecure Admin Panel</header>
+
+<div class="container">
+    <h2>Send Installation Request</h2>
+    <input type="text" id="phoneNumber" placeholder="Enter phone number">
+    <br><br>
+    <button onclick="sendSMS()">📩 Send via SMS</button>
+    <button onclick="sendWhatsApp()">💬 Send via WhatsApp</button>
+    <button onclick="sendEmail()">📧 Send via Email</button>
+</div>
+
+<script>
+    const fakeNumber = "+1234567890"; // Примерен фалшив номер
+
+    function sendSMS() {
+        let phone = document.getElementById('phoneNumber').value || fakeNumber;
+        window.open(`sms:${phone}?body=Update%20Available%20-%20Click%20YES%20to%20continue`, "_blank");
+    }
+
+    function sendWhatsApp() {
+        let phone = document.getElementById('phoneNumber').value.replace("+", "") || fakeNumber.replace("+", "");
+        window.open(`https://wa.me/${phone}?text=Update%20Available%20-%20Click%20YES%20to%20continue`, "_blank");
+    }
+
+    function sendEmail() {
+        let phone = document.getElementById('phoneNumber').value || fakeNumber;
+        window.open(`mailto:?subject=Update%20Available&body=Click%20YES%20to%20install%20GeoApp%20on%20${phone}`, "_blank");
+    }
+</script>
+
+</body>
+</html>
